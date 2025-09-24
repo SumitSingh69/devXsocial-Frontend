@@ -7,6 +7,7 @@ import { BASE_URL } from "../utils/constants";
 function Login() {
   const [email, setEmail] = useState("john@gmail.com");
   const [password, setPassword] = useState("John@1234");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = async () => {
@@ -25,7 +26,9 @@ function Login() {
       dispatch(addUser(result.data.data));
       navigate("/");
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data);
+      //set the error here
+      setError(err.response.data);
     }
   };
   return (
@@ -48,12 +51,13 @@ function Login() {
             className="input"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <p className="text-red-400">{error}</p>
           <div className="mt-6">
             <button
               className="btn btn-primary btn-block"
               onClick={handleSubmit}
             >
-              Subscribe
+              login
             </button>
           </div>
         </div>
