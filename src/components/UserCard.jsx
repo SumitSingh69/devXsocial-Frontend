@@ -1,7 +1,7 @@
 import React from "react";
 
 function UserCard({ user }) {
-  console.log(user);
+  if (!user) return null;
   return (
     <div className="card bg-slate-600 w-96 shadow-sm m-6">
       <figure className="px-10 pt-10">

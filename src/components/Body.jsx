@@ -16,7 +16,7 @@ function Body() {
         withCredentials: true, // its a protected route so we need to send our cookies as well to the backend
       });
 
-      dispatch(addUser(res.data));
+      dispatch(addUser(res.data.data));
     } catch (err) {
       console.log(err.response.data + " sumit");
       if (err.status === 401) {
