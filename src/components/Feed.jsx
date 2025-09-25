@@ -26,11 +26,10 @@ function Feed() {
   }, []);
 
   return (
-    feed && (
-      <div>
-        <UserCard user={feed[0]} />
-      </div>
-    )
+    feed &&
+    feed.map((user, index) => {
+      return <UserCard key={index} user={user} />;
+    })
   );
 }
 
