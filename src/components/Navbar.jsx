@@ -54,6 +54,9 @@ function Navbar() {
                 <Link to="/connections">connections</Link>
               </li>
               <li>
+                <Link to="/requests">requests</Link>
+              </li>
+              <li>
                 <Link to="/login" onClick={logoutUser}>
                   Logout
                 </Link>
