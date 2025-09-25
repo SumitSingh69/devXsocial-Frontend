@@ -22,7 +22,6 @@ function Login() {
           withCredentials: true,
         }
       );
-      console.log(result.data?.data);
       dispatch(addUser(result.data.data));
       navigate("/");
     } catch (err) {

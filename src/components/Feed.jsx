@@ -3,8 +3,10 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../utils/feedSlice";
+import UserCard from "./userCard";
 function Feed() {
   const feed = useSelector((store) => store.feed);
+  console.log(feed);
   const dispatch = useDispatch();
   const getFeed = async () => {
     if (feed) return;
@@ -13,8 +15,7 @@ function Feed() {
         withCredentials: true,
       });
       console.log("feed");
-      console.log(res);
-      dispatch(addFeed(res.data));
+      dispatch(addFeed(res?.data?.feedUsers));
     } catch (err) {
       console.log(err);
     }
@@ -23,7 +24,14 @@ function Feed() {
   useEffect(() => {
     getFeed();
   }, []);
-  return <div>Feed</div>;
+
+  return (
+    feed && (
+      <div>
+        <UserCard user={feed[0]} />
+      </div>
+    )
+  );
 }
 
 export default Feed;

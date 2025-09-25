@@ -9,7 +9,6 @@ function Navbar() {
   const dispatch = useDispatch();
   const logoutUser = async () => {
     try {
-      console.log("logging out the user");
       const res = await axios.post(
         BASE_URL + "/logout",
         {},
@@ -17,7 +16,6 @@ function Navbar() {
           withCredentials: true,
         }
       );
-      console.log(res);
       dispatch(removeUser());
     } catch (err) {
       console.log(err);

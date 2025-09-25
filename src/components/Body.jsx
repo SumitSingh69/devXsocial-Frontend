@@ -12,12 +12,10 @@ function Body() {
   const userData = useSelector((store) => store.user);
   const fetchUser = async () => {
     try {
-      console.log("hello");
       const res = await axios.get(BASE_URL + "/profile/view", {
         withCredentials: true, // its a protected route so we need to send our cookies as well to the backend
       });
 
-      console.log(res.data);
       dispatch(addUser(res.data));
     } catch (err) {
       console.log(err.response.data + " sumit");
