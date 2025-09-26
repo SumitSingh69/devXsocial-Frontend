@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addFeed } from "../utils/feedSlice";
+import { addFeed, removeUserFromFeed } from "../utils/feedSlice";
 import UserCard from "./UserCard";
 function Feed() {
   const feed = useSelector((store) => store.feed);
@@ -19,6 +19,19 @@ function Feed() {
     }
   };
 
+
+  const sendRequest = async (status, userId) => {
+    try {
+      const res = await axios.post(BASE_URL + "/sendRequest/" + status + "/" + userId,{},{
+        withCredentials: true
+      });
+      console.log(res);
+      dispatch(removeUserFromFeed(userId));
+    }catch(err) {
+      console.log(err);
+    }
+  }
+
   useEffect(() => {
     getFeed();
   }, []);
@@ -26,7 +39,7 @@ function Feed() {
   return (
     feed &&
     feed.map((user, index) => {
-      return <UserCard key={index} user={user} />;
+      return <UserCard key={index} user={user} sendRequest={sendRequest} />;
     })
   );
 }

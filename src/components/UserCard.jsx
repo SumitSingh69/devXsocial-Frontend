@@ -1,6 +1,6 @@
 import React from "react";
 
-function UserCard({ user }) {
+function UserCard({ user, sendRequest }) {
   if (!user) return null;
   return (
     <div className="card bg-slate-600 w-96 shadow-sm m-6">
@@ -14,8 +14,18 @@ function UserCard({ user }) {
         <h4>{`${user.age} , ${user.gender}`}</h4>
         <p>{user.about}</p>
         <div className="card-actions">
-          <button className="btn btn-primary bg-red-500">Ignore</button>
-          <button className="btn btn-primary bg-pink-500">Interested</button>
+          <button
+            className="btn btn-primary bg-red-500"
+            onClick={() => sendRequest("ingored", user._id)}
+          >
+            Ignore
+          </button>
+          <button
+            className="btn btn-primary bg-pink-500"
+            onClick={() => sendRequest("interested", user._id)}
+          >
+            Interested
+          </button>
         </div>
       </div>
     </div>
