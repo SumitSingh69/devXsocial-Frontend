@@ -16,7 +16,7 @@ function UserCard({ user, sendRequest }) {
         <div className="card-actions">
           <button
             className="btn btn-primary bg-red-500"
-            onClick={() => sendRequest("ingored", user._id)}
+            onClick={() => sendRequest("ignored", user._id)}
           >
             Ignore
           </button>
