@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addRequest } from "../utils/requestsSlice";
+import { addRequest, removeRequest } from "../utils/requestsSlice";
 import ReqCard from "./ReqCard";
 function Requests() {
   const requests = useSelector((store) => store.requests);
@@ -15,6 +15,7 @@ function Requests() {
         null,
         { withCredentials: true }
       );
+      dispatch(removeRequest(reqId));
       console.log(res);
     } catch (err) {
       console.log(err);
